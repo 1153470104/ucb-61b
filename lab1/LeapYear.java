@@ -7,15 +7,16 @@ public class LeapYear {
 	 * to check if it could be divide by 400 or divided by 4 but not for 100
 	 */
 	public static boolean isLeapYear(int year) {
-		if(year % 400 ==0) {
-			return true;
-		}else if(year % 100 == 0){
-			return false;
-		}else if(year % 4 == 0) {
-			return true;
-		}else {
-			return false;
-		}
+//		if(year % 400 ==0) {
+//			return true;
+//		}else if(year % 100 == 0){
+//			return false;
+//		}else if(year % 4 == 0) {
+//			return true;
+//		}else {
+//			return false;
+//		}
+		return (year % 400 == 0) | (year % 4 == 0) & (year % 100 != 0);
 	}
 	
     /** Calls isLeapYear to print correct statement.
