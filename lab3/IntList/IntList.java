@@ -11,11 +11,11 @@ public class IntList {
     /**
      * First element of list.
      */
-    public int first;
+    private int first;
     /**
      * Remaining elements of list.
      */
-    public IntList rest;
+    private IntList rest;
 
     /**
      * A List with first FIRST0 and rest REST0.
@@ -81,11 +81,11 @@ public class IntList {
      */
 
     public static IntList dcatenate(IntList A, IntList B) {
-        if(A == null){
+        if (A == null) {
             return B;
         }
         IntList C = A;
-        while(A.rest != null){
+        while (A.rest != null) {
             A = A.rest;
         }
         A.rest = B;
@@ -97,23 +97,23 @@ public class IntList {
      * * elements of B.  May NOT modify items of A.  Use 'new'.
      */
     public static IntList catenate(IntList A, IntList B) {
-        if(A == null){
+        if (A == null) {
             return B;
         }
 
         IntList C = new IntList(A.first, null);
         IntList D = C;
-        while(A.rest != null){
+        while (A.rest != null) {
             A = A.rest;
             C.rest = new IntList(A.first, null);
             C = C.rest;
         }
-        if(B == null){
+        if (B == null) {
             return D;
         }
         C.rest = new IntList(B.first, null);
         C = C.rest;
-        while(B.rest != null){
+        while (B.rest != null) {
             B = B.rest;
             C.rest = new IntList(B.first, null);
             C = C.rest;
@@ -126,21 +126,19 @@ public class IntList {
      * This method is destructive. If given null
      * as an input, returns null
      */
-    public static IntList reverse(IntList A){
-        if(A == null){
+    public static IntList reverse(IntList A) {
+        if (A == null) {
             return null;
         }
-        if(A.rest != null){
-            IntList addTheLast = IntList.reverse(A.rest);
-            IntList midList = addTheLast;
-            while(midList.rest != null){
-                midList = midList.rest;
-            }
-            midList.rest = IntList.of(A.first);
-            return addTheLast;
-        }else {
-            return IntList.of(A.first);
+        IntList reverseList = IntList.of(A.first);
+        IntList midList;
+        while (A.rest != null) {
+            A = A.rest;
+            midList = IntList.of(A.first);
+            midList.rest = reverseList;
+            reverseList = midList;
         }
+        return reverseList;
     }
 
 
