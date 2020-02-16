@@ -116,12 +116,16 @@ public class Body {
 		this.yyPos = this.yyPos + dt * this.yyVel;
 	}
 
-
-
-
-
-
-
+	/** draw the Body's image at Body's position */
+	public void draw() {
+		//StdDraw.enableDoubleBuffering();
+		/** 
+		 * OMG, what a mistake
+		 * I write xxVel at the yyPos's position! 
+		 */
+		StdDraw.picture(xxPos, yyPos, "images/" + imgFileName);
+		StdDraw.show();
+	}
 
 	/**
 	 * constructor two
