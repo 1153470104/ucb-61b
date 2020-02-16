@@ -65,6 +65,16 @@ public class NBody {
 		StdDraw.enableDoubleBuffering();
 		StdDraw.setScale(-1 * radius, radius);
 
+		/**
+		for(int i = 0; i < sound.length; i++) {
+			 System.out.printf("%f\t", sound[i]);
+		}
+		*/
+		/** audio file adding */
+		double[] sound = StdAudio.read("audio/2001.wav");
+		/** audio start playing */
+		//StdAudio.play(sound);
+		
 		/** creating an animation */
 		double time;
 		for(time = 0; time < T; time += dt) {
@@ -99,5 +109,8 @@ public class NBody {
                  			 allPlanets[i].xxPos, allPlanets[i].yyPos, allPlanets[i].xxVel,
                  			 allPlanets[i].yyVel, allPlanets[i].mass, allPlanets[i].imgFileName);   
 		}
+
+		/** stop audio playing */
+		StdAudio.close();
 	}
 }
