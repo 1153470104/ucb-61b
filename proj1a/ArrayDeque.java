@@ -1,10 +1,13 @@
 import java.lang.reflect.Array;
 
 public class ArrayDeque<T> {
+    private int size = 0;
+    private T[] items;
 
     /** create an empty linked list deque */
     public ArrayDeque() {
-
+        items = new T[10];
+        size = 0;
     }
 
     /** create a deep copy of 'other' */
