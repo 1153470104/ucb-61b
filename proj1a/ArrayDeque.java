@@ -1,12 +1,12 @@
 import java.lang.reflect.Array;
 
-public class ArrayDeque<T> {
+public class ArrayDeque<Glorp> {
     private int size = 0;
-    private T[] items;
+    private Glorp[] items;
 
     /** create an empty linked list deque */
     public ArrayDeque() {
-        items = new T[10];
+        items = (Glorp [])new Object[8];
         size = 0;
     }
 
@@ -20,19 +20,19 @@ public class ArrayDeque<T> {
      * must be proportional to the number of items
      * the usage factor always be at least 25%
      */
-    public void addFirst(T item) {
+    public void addFirst(Glorp item) {
 
     }
 
-    public void addLast(T item) {
+    public void addLast(Glorp item) {
 
     }
 
-    public T removeFirst() {
+    public Glorp removeFirst() {
 
     }
 
-    public T removeLast() {
+    public Glorp removeLast() {
 
     }
 
@@ -43,7 +43,7 @@ public class ArrayDeque<T> {
 
 
     /** get must use iteration, not recursion */
-    public T get(int index) {
+    public Glorp get(int index) {
 
     }
 

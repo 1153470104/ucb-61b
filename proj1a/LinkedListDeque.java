@@ -1,4 +1,15 @@
 public class LinkedListDeque<T> {
+    private LinkedNode sentinel;
+    private int size;
+
+    private class LinkedNode {
+        public LinkedNode prev;
+        public T item;
+        public LinkedNode next;
+    }
+
+
+
     /** create an empty linked list deque */
     public LinkedListDeque() {
 
@@ -15,7 +26,7 @@ public class LinkedListDeque<T> {
      * 5-8 isempty / size / get / printDeque
      *
      * the first 4 methods must take "constant time"
-     * i.e. execution tiem should not depend on the size of the deque
+     * i.e. execution time should not depend on the size of the deque
      */
     public void addFirst(T item) {
 
