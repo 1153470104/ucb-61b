@@ -28,28 +28,28 @@ public class ArrayDeque<Glorp> {
 
     }
 
-    public Glorp removeFirst() {
-
-    }
-
-    public Glorp removeLast() {
-
-    }
-
-    /** take constant time, too */
-    public int size() {
-
-    }
-
-
-    /** get must use iteration, not recursion */
-    public Glorp get(int index) {
-
-    }
-
-    public boolean isEmpty() {
-
-    }
+//    public Glorp removeFirst() {
+//
+//    }
+//
+//    public Glorp removeLast() {
+//
+//    }
+//
+//    /** take constant time, too */
+//    public int size() {
+//
+//    }
+//
+//
+//    /** get must use iteration, not recursion */
+//    public Glorp get(int index) {
+//
+//    }
+//
+//    public boolean isEmpty() {
+//
+//    }
 
     public void printDeque() {
 
