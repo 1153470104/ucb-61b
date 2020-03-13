@@ -1,8 +1,10 @@
 import java.lang.reflect.Array;
 
 public class ArrayDeque<Glorp> {
-    private int size = 0;
+    private int size;
     private Glorp[] items;
+    private int first;
+    private int last;
 
     /** create an empty linked list deque */
     public ArrayDeque() {
@@ -12,7 +14,28 @@ public class ArrayDeque<Glorp> {
 
     /** create a deep copy of 'other' */
     public ArrayDeque(ArrayDeque other) {
+        this.items = (Glorp [])new Object[other.size()];
+        this.size = other.size();
+        this.first = 0;
+    }
 
+    /**
+     * use prevItem() & nextItem()
+     * to encapsulate the check function of the array bound
+     */
+    private int prevItem(int count) {
+        if(count == 0) {
+            return size - 1;
+        } else {
+            return count - 1;
+        }
+    }
+
+    private int nextItem(int count) {
+        if(count == size - 1)
+            return 0;
+        else
+            return count + 1;
     }
 
     /**
@@ -21,35 +44,77 @@ public class ArrayDeque<Glorp> {
      * the usage factor always be at least 25%
      */
     public void addFirst(Glorp item) {
-
+        if(this.isEmpty()) {
+            this.items[0] = item;
+            first = 0;
+            last = 0;
+        }
+        /** array has a length variable */
+        if(size < items.length) {
+            this.items[prevItem(first)] = item;
+            first = prevItem(first);
+        } else {
+            if(size < 1000) {
+                this.resize(size * 2);
+            } else {
+                this.resize(size + 1000);
+            }
+            this.items[prevItem(first)] = item;
+            first = prevItem(first);
+        }
     }
 
     public void addLast(Glorp item) {
+        if(this.isEmpty()) {
+            this.items[0] = item;
+            first = 0;
+            last = 0;
+        }
+        if(size < items.length) {
+            this.items[nextItem(last)] = item;
+            last = nextItem(last);
+        } else {
+            if(size < 1000) {
+                this.resize(size * 2);
+            } else {
+                this.resize(size + 1000);
+            }
+            this.items[nextItem(last)] = item;
+            last = nextItem(last);
+        }
+    }
+
+    public Glorp removeFirst() {
 
     }
 
-//    public Glorp removeFirst() {
-//
-//    }
-//
-//    public Glorp removeLast() {
-//
-//    }
-//
-//    /** take constant time, too */
-//    public int size() {
-//
-//    }
-//
-//
-//    /** get must use iteration, not recursion */
-//    public Glorp get(int index) {
-//
-//    }
-//
-//    public boolean isEmpty() {
-//
-//    }
+    public Glorp removeLast() {
+
+    }
+
+    private void resize(int newSize) {
+
+    }
+
+    /** take constant time, too */
+    public int size() {
+        return this.size;
+    }
+
+
+    /** get must use iteration, not recursion */
+    public Glorp get(int index) {
+        int site = (index + first) % size;
+        return items[site];
+    }
+
+    public boolean isEmpty() {
+        if(size == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     public void printDeque() {
 
