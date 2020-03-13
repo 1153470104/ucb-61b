@@ -104,7 +104,7 @@ public class ArrayDeque<Glorp> {
 
     /** get must use iteration, not recursion */
     public Glorp get(int index) {
-        int site = (index + first) % size;
+        int site = (index + first) % this.items.length;
         return items[site];
     }
 
@@ -117,6 +117,8 @@ public class ArrayDeque<Glorp> {
     }
 
     public void printDeque() {
-
+        for(int i = first; i < size + first; i++) {
+            System.out.print(this.get(i % this.items.length));
+        }
     }
 }
