@@ -1,4 +1,5 @@
 import java.lang.reflect.Array;
+import java.util.Objects;
 
 public class ArrayDeque<Glorp> {
     private int size;
@@ -85,15 +86,38 @@ public class ArrayDeque<Glorp> {
     }
 
     public Glorp removeFirst() {
-
+        Glorp firstItem = this.items[first];
+        first = nextItem(first);
+        size = size - 1;
+        if(this.size == 0) {
+            this.first = 0;
+            this.last = 0;
+        }
+        if(4 * this.size < this.items.length && this.size >= 4) {
+            this.resize(this.size * 2);
+        }
+        return firstItem;
     }
 
     public Glorp removeLast() {
-
+        Glorp lastItem = this.items[last];
+        last = prevItem(last);
+        size = size - 1;
+        if(this.size == 0) {
+            this.first = 0;
+            this.last = 0;
+        }
+        if(4 * this.size < this.items.length && this.size >= 4) {
+            this.resize(this.size * 2);
+        }
+        return lastItem;
     }
 
     private void resize(int newSize) {
-
+        Glorp[] newItems = (Glorp[]) new Object[newSize];
+        for(int i = first; i < first + size; i++) {
+            newItems[i] = items[i % items.length];
+        }
     }
 
     /** take constant time, too */
