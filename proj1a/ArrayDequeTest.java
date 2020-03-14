@@ -88,14 +88,15 @@ class ArrayDequeTest {
         for(int j = 0; j < 100; j++) {
             arr.addLast(2);
         }
-        assertTrue(0.25 < (double)arr.size() / (double)arr.items.length);
+        assertTrue(0.25 < (double)arr.size() / (double)arr.itemsLength());
         assertEquals(1, arr.get(7));
+        assertEquals(2, arr.get(9));
         assertEquals(2, arr.get(8));
 
         for(int k = 0; k < 104; k++) {
             arr.removeFirst();
         }
-        assertTrue(0.25 < (double)arr.size() / (double)arr.items.length);
+        assertTrue(0.25 < (double)arr.size() / (double)arr.itemsLength());
         assertEquals(4, arr.size());
         assertEquals(2, arr.get(2));
     }

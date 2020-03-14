@@ -22,6 +22,9 @@ public class ArrayDeque<Glorp> {
         }
     }
 
+    public int itemsLength() {
+        return items.length;
+    }
     /**
      * use prevItem() & nextItem()
      * to encapsulate the check function of the array bound
@@ -49,16 +52,20 @@ public class ArrayDeque<Glorp> {
      * the usage factor always be at least 25%
      */
     public void addFirst(Glorp item) {
-        size++;
+        //size++;
+        //too fool to add size++ on the top
+        // and forget the condition judge is based on size!
         if(this.isEmpty()) {
             this.items[0] = item;
             first = 0;
             last = 0;
-//            // i forgot to return!!!
-//            return;
+            size++;
+            // i forgot to return!!!
+            return;
         } else if(size < items.length) {
             first = prevItem(first);
             this.items[first] = item;
+            size++;
         } else {
             if(size < 1000) {
                 this.resize(size * 2);
@@ -66,19 +73,23 @@ public class ArrayDeque<Glorp> {
                 this.resize(size + 1000);
             }
             first = prevItem(first);
+            size++;
             this.items[first] = item;
         }
     }
 
     public void addLast(Glorp item) {
-        size++;
         if(this.isEmpty()) {
             this.items[0] = item;
             first = 0;
             last = 0;
-        } else if(size < items.length) {
+            size++;
+            return;
+        }
+        if(size < items.length) {
             this.items[nextItem(last)] = item;
             last = nextItem(last);
+            size++;
         } else {
             if(size < 1000) {
                 this.resize(size * 2);
@@ -87,13 +98,20 @@ public class ArrayDeque<Glorp> {
             }
             this.items[nextItem(last)] = item;
             last = nextItem(last);
+            size++;
         }
     }
 
     public Glorp removeFirst() {
+        if(size == 0) {
+            System.out.println("try to remove the first item of an empty deque.");
+            return null;
+        }
+
         Glorp firstItem = this.items[first];
         first = nextItem(first);
         size--;
+
         if(this.size == 0) {
             this.first = 0;
             this.last = 0;
@@ -105,9 +123,14 @@ public class ArrayDeque<Glorp> {
     }
 
     public Glorp removeLast() {
+        if(size == 0) {
+            System.out.println("try to remove the first item of an empty deque.");
+            return null;
+        }
         Glorp lastItem = this.items[last];
         last = prevItem(last);
         size--;
+
         if(this.size == 0) {
             this.first = 0;
             this.last = 0;
@@ -123,9 +146,14 @@ public class ArrayDeque<Glorp> {
         for(int i = first; i < first + size; i++) {
             newItems[i % newSize] = items[i % items.length];
         }
+
+        //forget that first cound change when the array is shrinking;
+        //the last bug!
+        first = first % newSize;
         //forget to change the reference of item
         //forget to change last
-        last = (first + size) % newSize;
+        //change last into a false one!!!
+        last = (first + size - 1) % newSize;
         this.items = newItems;
     }
 
